@@ -22,8 +22,19 @@ let transports = [];
       maxFiles: '5' // Max 5 files
     })
   ); 
+  
+  var logger = winston.createLogger({
+    level:(process.env.NODE_ENV === 'production')?'info':'silly',
+    format: winston.format.combine(
+      winston.format.colorize({ all: true }),
+      winston.format.json()
+    ), 
+    transports: transports 
+  });
 
-  var logger = winston.createLogger({ transports: transports })
+  logger.add(new winston.transports.Console({
+    format: winston.format.simple()
+  }));
 
 module.exports.log = {
 
@@ -38,7 +49,7 @@ module.exports.log = {
   * You may also set the level to "silent" to suppress all logs.             *
   *                                                                          *
   ***************************************************************************/
-  custom : logger
-  // level: 'info'
+  custom : logger,
+   level: logger.level
 
 };

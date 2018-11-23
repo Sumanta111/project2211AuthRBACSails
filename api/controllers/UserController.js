@@ -39,6 +39,7 @@ module.exports = {
                     var token = jwt.encode(user, 'MySecretForEncode');
                     // return the information including token as JSON
                     sails.log.error('Some error');
+                    sails.log.debug('Some debug');
                     res.ok({
                         ...user,
                         token: 'JWT ' + token
