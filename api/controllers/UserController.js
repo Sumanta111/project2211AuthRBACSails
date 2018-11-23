@@ -38,6 +38,7 @@ module.exports = {
                     // if user is found and password is right create a token
                     var token = jwt.encode(user, 'MySecretForEncode');
                     // return the information including token as JSON
+                    sails.log.error('Some error');
                     res.ok({
                         ...user,
                         token: 'JWT ' + token
