@@ -24,7 +24,7 @@ let transports = [];
   ); 
   
   var logger = winston.createLogger({
-    level:(process.env.NODE_ENV === 'production')?'info':'silly',
+    level:(process.env.NODE_ENV === 'production')?'info':'debug',
     format: winston.format.combine(
       winston.format.colorize({ all: true }),
       winston.format.json()
@@ -50,6 +50,7 @@ module.exports.log = {
   *                                                                          *
   ***************************************************************************/
   custom : logger,
-   level: logger.level
+  // level: logger.level,
+  inspect: false
 
 };

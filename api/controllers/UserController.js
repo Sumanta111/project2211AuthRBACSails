@@ -35,7 +35,7 @@ module.exports = {
         }else{
             comparePassword(req,user,(bool)=>{
                 if(bool){
-                    var token = jwt.encode(user, 'MySecretForEncode');
+                    var token = jwt.encode(user, sails.config.myconf.jwtSecret);
                     sails.log(token)
                     res.ok({
                       ...user,
@@ -72,10 +72,10 @@ module.exports = {
 let comparePassword = function(req,user,callback){
     User.comparePassword(req.body.password,user,function(err,isMatch){
         if (isMatch && !err) {
-            sails.log('Password matched!');
+            sails.log.info('Password matched!');
             callback(true);
           } else {
-            sails.log('Unauthorized');
+            sails.log.info('Unauthorized');
             callback(false);
           }
     })
