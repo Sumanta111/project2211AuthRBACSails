@@ -10,6 +10,8 @@
  */
 
 module.exports.bootstrap = async function(done) {
+  
+  sails.HttpStatus = require('http-status-codes');
 
   // By convention, this is a good place to set up fake data during development.
   //

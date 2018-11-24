@@ -17,7 +17,7 @@ module.exports = {
         const createdUser = await User.create(data).fetch().intercept((err)=>{
             if(err) return res.serverError(err);
         })
-        return res.status(201).send({
+        return res.status(sails.HttpStatus.CREATED).send({
             msg : 'User Successfully created',
             user : createdUser
         })
@@ -31,23 +31,20 @@ module.exports = {
         });
 
         if(!user){
-            res.status(404).send({msg : 'Authentication failed . User not found'});
+            res.notFound({msg : 'Authentication failed . User not found'})
         }else{
-            User.comparePassword(req.body.password,user,function(err,isMatch){
-                if (isMatch && !err) {
-                    // if user is found and password is right create a token
+            comparePassword(req,user,(bool)=>{
+                if(bool){
                     var token = jwt.encode(user, 'MySecretForEncode');
-                    // return the information including token as JSON
-                    sails.log.error('Some error');
-                    sails.log.debug('Some debug');
+                    sails.log(token)
                     res.ok({
-                        ...user,
-                        token: 'JWT ' + token
-                    });
-                  } else {
-                    res.status(401).send({msg: 'Authentication failed. Wrong password.'});
+                      ...user,
+                      token: 'JWT ' + token
+                      });            
+                  }else{
+                      res.status(sails.HttpStatus.UNAUTHORIZED).send({msg: 'Authentication failed. Wrong password.'});
                   }
-            })
+            });
         }
     },
     //only permission for admin
@@ -68,6 +65,19 @@ module.exports = {
         return res.ok({
             user : user
         })
-    }
+    },
 };
+//private functions
+
+let comparePassword = function(req,user,callback){
+    User.comparePassword(req.body.password,user,function(err,isMatch){
+        if (isMatch && !err) {
+            sails.log('Password matched!');
+            callback(true);
+          } else {
+            sails.log('Unauthorized');
+            callback(false);
+          }
+    })
+}
 
