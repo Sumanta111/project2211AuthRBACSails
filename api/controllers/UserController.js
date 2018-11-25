@@ -67,6 +67,6 @@ module.exports = {
         return res.ok({
             user : user
         })
-    }
+    },
 };
 

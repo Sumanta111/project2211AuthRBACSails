@@ -46,7 +46,9 @@ module.exports.routes = {
   'post /api/v1/sign-up' : 'UserController.register',
   'post /api/v1/login' : 'UserController.login',
   'get /api/v1/users' : 'UserController.findAllUser',
-  'get /api/v1/users/:id' : 'UserController.findSingleUser' 
+  'get /api/v1/users/:id' : 'UserController.findSingleUser', 
+
+  'post /api/v1/upload' : 'UploadFilesController.imageUpload'
 
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
