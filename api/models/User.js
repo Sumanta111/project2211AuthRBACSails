@@ -24,6 +24,11 @@ module.exports = {
     role : {
       type : 'number',
       defaultsTo : sails.config.myconf.isUser
+    },
+
+    pets: {
+      collection: 'uploadfiles',
+      via: 'user_id'
     }
   },
   customToJSON: function(){

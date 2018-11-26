@@ -15,6 +15,18 @@ module.exports = {
     path : {
       type : 'string',
       required : true
+    },
+    type : {
+      type : 'string',
+      required : true
+    },
+    size : {
+      type : 'number',
+      required : true
+    },
+
+    user_id: {
+      model: 'user'
     }
   },
 
