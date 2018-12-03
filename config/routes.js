@@ -48,7 +48,9 @@ module.exports.routes = {
   'get /api/v1/users' : 'UserController.findAllUser',
   'get /api/v1/users/:id' : 'UserController.findSingleUser', 
 
-  'post /api/v1/upload/:id' : 'UploadFilesController.imageUpload'
+  'post /api/v1/upload/:id' : 'UploadFilesController.imageUpload',
+
+  'get /api/v1/push/test' : 'PushController.test'
 
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
