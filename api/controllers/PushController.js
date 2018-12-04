@@ -7,12 +7,15 @@
 
 module.exports = {
   test : function (req,res){
-    var registrationToken = 'f1kvV4owPtw:APA91bGQnHEElxEJmrsFRkp8kF5xV2jqniuOmgwrJftMdf0gAH_wRmjXKzjqLGgGtS8WiDLGaXiAKEMc1dnWfeecGD9FrfjnC28c00Z_doffjoEmYdAaB-c5ifSxxLoSGEUy71qTbWGL';
+    var registrationToken = 'f-FNVhdG9Yo:APA91bG4_xI6Hf1FCuBuQy_nTnoVusqzTsVzwasSWcIN-25FfGuOpraTgHviSH3Uxsuo3XZzULmHeoAH78H8KfEV4Er44j0bh78p-sc8-HW0pNhNsCCg6AHT3zipZs__moELm5FusZz6';
 
     var payload = {
-        data : {
-            Mykey1 : "hello"
-        }
+        notification: {
+            title: "Firebase",
+            body: "Firebase is awesome",
+            click_action: "http://localhost:3000/",
+            icon: "http://redmine.craterzone.co.in/themes/coffee/images/logo.png"
+        },
     };
     var options = {
         priority : 'high',
